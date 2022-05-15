@@ -12,4 +12,5 @@ export interface UserData {
 
 export interface InitialState {
 	userData: UserData;
+	isLoading: boolean;
 }

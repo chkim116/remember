@@ -18,6 +18,7 @@ export const getAuthInitialState = (): InitialState => {
 			email: '',
 			isInvited: false,
 		},
+		isLoading: false,
 	};
 };
 
@@ -34,35 +35,47 @@ export const auth = createSlice({
 	},
 	extraReducers: (builder) =>
 		builder
-			.addCase(effLoginUser.pending, (state) => state)
 			.addCase(effLoginUser.fulfilled, (state, { payload }) => {
 				if (payload) {
 					state.userData = payload;
 				}
 			})
-			.addCase(effLoginUser.rejected, (state) => state)
 
-			.addCase(effLogout.pending, (state) => state)
 			.addCase(effLogout.fulfilled, (state, { payload }) => {
 				if (payload) {
 					state.userData = payload;
 				}
 			})
-			.addCase(effLogout.rejected, (state) => state)
 
-			.addCase(effAuth.pending, (state) => state)
 			.addCase(effAuth.fulfilled, (state, { payload }) => {
 				if (payload) {
 					state.userData = payload;
 				}
 			})
-			.addCase(effAuth.rejected, (state) => state)
 
-			.addCase(effInviteRequest.pending, (state) => state)
 			.addCase(effInviteRequest.fulfilled, (state) => {
 				state.userData.isInvited = true;
 			})
-			.addCase(effInviteRequest.rejected, (state) => state),
+
+			.addMatcher(
+				(action) => {
+					return action.type.includes('pending');
+				},
+				(state) => {
+					state.isLoading = true;
+				}
+			)
+			.addMatcher(
+				(action) => {
+					return (
+						action.type.includes('fulfilled') ||
+						action.type.includes('rejected')
+					);
+				},
+				(state) => {
+					state.isLoading = false;
+				}
+			),
 });
 
 export const { fakeInvited, reset } = auth.actions;
