@@ -1,6 +1,6 @@
 import { Layouts, PlaceList, ScheduleCalender } from '../components';
 
-export const Place = () => {
+export const Main = () => {
 	const mock = Array.from({ length: 20 }).map((_, i) => {
 		return {
 			id: i,
