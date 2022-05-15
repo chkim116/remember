@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"lib": [
+			"dom",
+			"es5"
+		],
+		"types": [
+			"cypress"
+		],
+	},
+	"include": [
+		"**/*"
+	]
+}
