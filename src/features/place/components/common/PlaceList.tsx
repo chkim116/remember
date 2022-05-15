@@ -1,19 +1,18 @@
 import { Card, Image, List } from 'antd';
+import { CardProps } from 'antd/lib/card';
 import VirtualList from 'rc-virtual-list';
 
-export const BucketList = () => {
-	const mock = Array.from({ length: 20 }).map((_, i) => {
-		return {
-			id: i,
-			title: '오마카세' + i,
-			description: 'dsfdsfs',
-		};
-	});
+interface Props extends Partial<CardProps> {
+	// TODO: 바꿀것
+	data: any;
+	title: string;
+}
 
+export const PlaceList = ({ data, title, ...props }: Props) => {
 	return (
-		<Card title='Bucket List' size='small'>
+		<Card title={title} size='small' {...props}>
 			<List>
-				<VirtualList data={mock} height={400} itemKey='id'>
+				<VirtualList data={data} height={400} itemKey='id'>
 					{(item: any) => (
 						<List.Item key={item.id}>
 							<List.Item.Meta
