@@ -1,5 +1,7 @@
 import { ReactNode, useLayoutEffect } from 'react';
 import { Provider, useSelector } from 'react-redux';
+import { ConfigProvider } from 'antd';
+import koKR from 'antd/lib/locale/ko_KR';
 
 import store, { useAppDispatch } from '@/stores';
 import { effAuth } from '@/stores/auth/auth.effect';
@@ -27,7 +29,9 @@ const AuthProvider = ({ children }: Props) => {
 export const AppProvider = ({ children }: Props) => {
 	return (
 		<Provider store={store}>
-			<AuthProvider>{children}</AuthProvider>
+			<ConfigProvider locale={koKR}>
+				<AuthProvider>{children}</AuthProvider>
+			</ConfigProvider>
 		</Provider>
 	);
 };
