@@ -75,4 +75,4 @@ export const auth = createSlice({
 			),
 });
 
-export const { fakeInvited, reset } = auth.actions;
+export const { reset } = auth.actions;
