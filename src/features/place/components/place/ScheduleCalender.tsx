@@ -5,6 +5,9 @@ import styled from 'styled-components';
 
 moment.locale('ko');
 
+const CalendarWrap = styled(Calendar)`
+	margin: 24px 0;
+`;
 const CalendarHeader = styled.div`
 	margin-top: 12px;
 	padding: 12px;
@@ -19,7 +22,7 @@ const CalendarEventItem = styled.li`
 
 export const ScheduleCalender = () => {
 	return (
-		<Calendar
+		<CalendarWrap
 			dateCellRender={(value) => {
 				console.log(value);
 				return (
