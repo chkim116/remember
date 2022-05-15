@@ -2,14 +2,13 @@ import {
 	FileTextOutlined,
 	HistoryOutlined,
 	ScheduleOutlined,
-	UserOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MainMenuItem = styled(Menu)`
-	padding-top: 12px;
+	padding-top: 3em;
 `;
 
 const NAV_LINKS = [
@@ -28,7 +27,6 @@ const NAV_LINKS = [
 		label: '이전기록',
 		icon: <HistoryOutlined />,
 	},
-	{ key: 'profile', label: '내정보', icon: <UserOutlined /> },
 ];
 
 const menuItems = NAV_LINKS.map((item) => {
