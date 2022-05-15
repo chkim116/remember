@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { effAuth, effLoginUser, effLogout } from './auth.effect';
+import {
+	effAuth,
+	effInviteRequest,
+	effLoginUser,
+	effLogout,
+} from './auth.effect';
 import { InitialState } from './types';
 
 type State = ReturnType<typeof getAuthInitialState>;
@@ -51,7 +56,13 @@ export const auth = createSlice({
 					state.userData = payload;
 				}
 			})
-			.addCase(effAuth.rejected, (state) => state),
+			.addCase(effAuth.rejected, (state) => state)
+
+			.addCase(effInviteRequest.pending, (state) => state)
+			.addCase(effInviteRequest.fulfilled, (state) => {
+				state.userData.isInvited = true;
+			})
+			.addCase(effInviteRequest.rejected, (state) => state),
 });
 
 export const { fakeInvited, reset } = auth.actions;

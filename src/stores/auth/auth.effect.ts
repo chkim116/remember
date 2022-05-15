@@ -51,3 +51,15 @@ export const effAuth = createAsyncThunk<UserData | undefined, void>(
 		}
 	}
 );
+
+export const effInviteRequest = createAsyncThunk(
+	'auth/effInviteRequest',
+	(inviteCode: string, { rejectWithValue }) => {
+		try {
+			// TODO: 초대 성공
+			console.log(inviteCode);
+		} catch (err) {
+			rejectWithValue(err);
+		}
+	}
+);
