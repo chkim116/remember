@@ -1,8 +1,8 @@
-import Loading from '@/components/Loading';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Loading from '@/components/Loading';
 import { selUserLoading } from '@/stores/auth/auth.selector';
 import Invite from './Invite';
 
