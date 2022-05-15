@@ -10,7 +10,7 @@ interface Props extends Partial<CardProps> {
 
 export const PlaceList = ({ data, title, ...props }: Props) => {
 	return (
-		<Card title={title} size='small' {...props}>
+		<Card title={title} {...props}>
 			<List>
 				<VirtualList data={data} height={400} itemKey='id'>
 					{(item: any) => (

@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import { Layouts, PlaceList, ScheduleCalender } from '../components';
 
 export const Place = () => {
@@ -13,17 +14,12 @@ export const Place = () => {
 		<Layouts>
 			<PlaceList
 				data={mock}
-				size='default'
+				actions={[<Button key='12'>fsdfsd</Button>]}
 				title='To be continue..'
 				extra='우리가 곧 할 목록들 :)'
 			/>
 			<ScheduleCalender />
-			<PlaceList
-				data={mock}
-				size='default'
-				title='버킷리스트'
-				extra='우리 꼭 하자 :)'
-			/>
+			<PlaceList data={mock} title='버킷리스트' extra='우리 꼭 하자 :)' />
 		</Layouts>
 	);
 };
