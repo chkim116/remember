@@ -7,11 +7,11 @@ import { publicRoutes } from './publicRoutes';
 export const AppRoutes = () => {
 	// TODO: 유저 권한
 	const auth = {
-		login: true,
+		login: false,
 		invited: false,
 	};
 
-	let routes = auth.login
+	const routes = auth.login
 		? auth.invited
 			? protectedRoutes
 			: invitedRoutes
@@ -19,5 +19,5 @@ export const AppRoutes = () => {
 
 	const element = useRoutes(routes);
 
-	return <>{element}</>;
+	return element;
 };
