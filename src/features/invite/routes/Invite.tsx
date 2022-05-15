@@ -1,5 +1,5 @@
 import { Button, Divider, Input, Typography } from 'antd';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -31,7 +31,7 @@ const Invite = () => {
 	const [inviteCode, setInviteCode] = useState('');
 	const navigate = useNavigate();
 
-	const handleInviteCodeChange = (e) => {
+	const handleInviteCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInviteCode(e.target.value);
 	};
 	const handleInviteClick = () => {

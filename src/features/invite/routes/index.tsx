@@ -1,8 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Find from './Find';
-import Login from './Login';
+import Invite from './Invite';
 
 const Wrap = styled.div`
 	display: flex;
@@ -13,12 +12,11 @@ const Wrap = styled.div`
 	min-height: 90vh;
 `;
 
-export const AuthRoutes = () => {
+export const InviteRoutes = () => {
 	return (
 		<Wrap>
 			<Routes>
-				<Route path='/' element={<Login />} />
-				<Route path='/find' element={<Find />} />
+				<Route path='/' element={<Invite />} />
 			</Routes>
 		</Wrap>
 	);

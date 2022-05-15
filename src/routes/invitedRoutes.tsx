@@ -1,8 +1,8 @@
-import Invite from '@/features/invite/routes/Invite';
+import { InviteRoutes } from '@/features/invite';
 
 export const invitedRoutes = [
 	{
 		path: '/',
-		element: <Invite />,
+		element: <InviteRoutes />,
 	},
 ];
