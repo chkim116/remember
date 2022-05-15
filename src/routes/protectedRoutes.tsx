@@ -1,8 +1,9 @@
-import Invite from '@/features/invite/routes/Invite';
 import { Empty, Spin } from 'antd';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Invite from '@/features/invite/routes/Invite';
 
 const FallbackSpin = styled.div`
 	display: flex;

@@ -1,3 +1,6 @@
+import Loading from '@/components/Loading';
+import { selUserLoading } from '@/stores/auth/auth.selector';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,8 +17,11 @@ const Wrap = styled.div`
 `;
 
 export const AuthRoutes = () => {
+	const isUserLoading = useSelector(selUserLoading);
+
 	return (
 		<Wrap>
+			{isUserLoading && <Loading />}
 			<Routes>
 				<Route path='/' element={<Login />} />
 				<Route path='/find' element={<Find />} />

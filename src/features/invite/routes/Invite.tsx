@@ -1,8 +1,9 @@
-import { useAppDispatch } from '@/stores';
-import { effInviteRequest } from '@/stores/auth/auth.effect';
 import { Button, Divider, Input, Typography } from 'antd';
 import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
+
+import { useAppDispatch } from '@/stores';
+import { effInviteRequest } from '@/stores/auth/auth.effect';
 
 const { Text } = Typography;
 
