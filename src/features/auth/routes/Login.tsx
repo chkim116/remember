@@ -1,10 +1,13 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { emailRegExp } from '@/lib/regExp';
+import { useAppDispatch } from '@/stores';
+import { effLoginUser } from '@/stores/auth/auth.effect';
+import { UserLoginDto } from '@/stores/auth/types';
 
 const { Title } = Typography;
 const { useForm } = Form;
@@ -46,13 +49,13 @@ const RegisterButtonWrap = styled.div`
 
 const Login = () => {
 	const [form] = useForm();
+	const dispatch = useAppDispatch();
+
 	const [loginType, setLoginType] = useState<'login' | 'register'>('login');
 	const isLoginForm = loginType === 'login';
-	const navigate = useNavigate();
 
-	const handleFinish = () => {
-		// TODO: 완료 후, 성공 -> invite로 이동
-		navigate('/invite');
+	const handleFinish = (values: unknown) => {
+		dispatch(effLoginUser(values as UserLoginDto));
 	};
 
 	const handleRegisterChange = () => {

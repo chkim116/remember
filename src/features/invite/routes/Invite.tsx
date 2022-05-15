@@ -1,7 +1,9 @@
 import { Button, Divider, Input, Typography } from 'antd';
 import { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { useAppDispatch } from '@/stores';
+import { effInviteRequest } from '@/stores/auth/auth.effect';
 
 const { Text } = Typography;
 
@@ -28,17 +30,18 @@ const InviteCodeInputWrap = styled.div`
 `;
 
 const Invite = () => {
+	const dispatch = useAppDispatch();
+
 	const [inviteCode, setInviteCode] = useState('');
-	const navigate = useNavigate();
 
 	const handleInviteCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInviteCode(e.target.value);
 	};
+
 	const handleInviteClick = () => {
 		// TODO: 유효성 검사.. 초대 완료 시 리다이렉트
 		// TODO: 공유 기능
-		console.log(inviteCode);
-		navigate('/');
+		dispatch(effInviteRequest(inviteCode));
 	};
 
 	return (

@@ -1,6 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+import Loading from '@/components/Loading';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { selUserLoading } from '@/stores/auth/auth.selector';
 import Invite from './Invite';
 
 const Wrap = styled.div`
@@ -13,8 +16,11 @@ const Wrap = styled.div`
 `;
 
 export const InviteRoutes = () => {
+	const isUserLoading = useSelector(selUserLoading);
+
 	return (
 		<Wrap>
+			{isUserLoading && <Loading />}
 			<Routes>
 				<Route path='*' element={<Invite />} />
 			</Routes>
