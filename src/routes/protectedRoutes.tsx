@@ -1,3 +1,4 @@
+import Invite from '@/features/invite/routes/Invite';
 import { Empty, Spin } from 'antd';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -34,7 +35,7 @@ export const protectedRoutes = [
 				path: '/',
 				element: <div>홈</div>,
 			},
-			{ path: '/users', element: <div>유저</div> },
+			{ path: '/invite', element: <Invite /> },
 			{
 				path: '*',
 				element: (
