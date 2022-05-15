@@ -120,7 +120,9 @@ const Login = () => {
 				)}
 
 				<LoginFormButtonWrap>
-					<Form.Item>{isLoginForm && <Link to='/'>ID/PW 찾기</Link>}</Form.Item>
+					<Form.Item>
+						{isLoginForm && <Link to='/find'>PW 찾기</Link>}
+					</Form.Item>
 					<Form.Item>
 						<Button type='primary' htmlType='submit'>
 							{isLoginForm ? '로그인' : '회원가입'}
