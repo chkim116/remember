@@ -17,7 +17,7 @@ export const effLoginUser = createAsyncThunk<
 		return userData;
 	} catch (err) {
 		console.log(err);
-		rejectWithValue('error');
+		rejectWithValue(err);
 	}
 });
 
@@ -30,17 +30,20 @@ export const effLogout = createAsyncThunk('auth/effLogout', () => {
 	}
 });
 
-export const effAuth = createAsyncThunk('auth/effAuth', () => {
-	try {
-		// TODO: 권한 획득
-		const token = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
+export const effAuth = createAsyncThunk<UserData | undefined, void>(
+	'auth/effAuth',
+	(_, { rejectWithValue }) => {
+		try {
+			// TODO: 권한 획득
+			const token = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
 
-		if (token) {
-			return userData;
+			if (token) {
+				return userData;
+			}
+
+			return getAuthInitialState().userData;
+		} catch (err) {
+			rejectWithValue(err);
 		}
-
-		return getAuthInitialState().userData;
-	} catch (err) {
-		console.log(err);
 	}
-});
+);
