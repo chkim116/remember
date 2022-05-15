@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { emailRegExp } from '@/lib/regExp';
@@ -48,8 +48,12 @@ const Login = () => {
 	const [form] = useForm();
 	const [loginType, setLoginType] = useState<'login' | 'register'>('login');
 	const isLoginForm = loginType === 'login';
+	const navigate = useNavigate();
 
-	const onFinish = () => {};
+	const handleFinish = () => {
+		// TODO: 완료 후, 성공 -> invite로 이동
+		navigate('/invite');
+	};
 
 	const handleRegisterChange = () => {
 		setLoginType((prev) => (prev === 'login' ? 'register' : 'login'));
@@ -70,7 +74,7 @@ const Login = () => {
 			<Form.Item>
 				<Title>Remember</Title>
 			</Form.Item>
-			<LoginForm form={form} onFinish={onFinish}>
+			<LoginForm form={form} onFinish={handleFinish}>
 				<Form.Item
 					name='email'
 					rules={[
