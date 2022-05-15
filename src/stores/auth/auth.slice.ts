@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { effAuth, effLoginUser } from './auth.effect';
+import { effAuth, effLoginUser, effLogout } from './auth.effect';
 import { InitialState } from './types';
 
 type State = ReturnType<typeof getAuthInitialState>;
@@ -36,6 +36,14 @@ export const auth = createSlice({
 				}
 			})
 			.addCase(effLoginUser.rejected, (state) => state)
+
+			.addCase(effLogout.pending, (state) => state)
+			.addCase(effLogout.fulfilled, (state, { payload }) => {
+				if (payload) {
+					state.userData = payload;
+				}
+			})
+			.addCase(effLogout.rejected, (state) => state)
 
 			.addCase(effAuth.pending, (state) => state)
 			.addCase(effAuth.fulfilled, (state, { payload }) => {

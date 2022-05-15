@@ -21,14 +21,18 @@ export const effLoginUser = createAsyncThunk<
 	}
 });
 
-export const effLogout = createAsyncThunk('auth/effLogout', () => {
-	try {
-		// TODO: 로그아웃
-		localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
-	} catch (err) {
-		console.error(err);
+export const effLogout = createAsyncThunk(
+	'auth/effLogout',
+	(_, { rejectWithValue }) => {
+		try {
+			// TODO: 로그아웃
+			localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
+			return getAuthInitialState().userData;
+		} catch (err) {
+			rejectWithValue(err);
+		}
 	}
-});
+);
 
 export const effAuth = createAsyncThunk<UserData | undefined, void>(
 	'auth/effAuth',
