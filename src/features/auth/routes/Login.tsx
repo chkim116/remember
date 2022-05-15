@@ -1,6 +1,6 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, Typography } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -29,6 +29,12 @@ const LoginFormButtonWrap = styled.div`
 	margin-top: 8px;
 `;
 
+const MoveToLoginButton = styled(Button)`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+`;
+
 const RegisterButtonWrap = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -40,7 +46,14 @@ const RegisterButtonWrap = styled.div`
 
 const Login = () => {
 	const [form] = useForm();
+	const [loginType, setLoginType] = useState<'login' | 'register'>('login');
+	const isLoginForm = loginType === 'login';
+
 	const onFinish = () => {};
+
+	const handleRegisterChange = () => {
+		setLoginType((prev) => (prev === 'login' ? 'register' : 'login'));
+	};
 
 	useEffect(() => {
 		// TODO: 서버 API 호출 후 에러 메시지 보내도록 하기.
@@ -86,16 +99,44 @@ const Login = () => {
 						placeholder='Password'
 					/>
 				</Form.Item>
-				<LoginFormButtonWrap>
-					<Form.Item>
-						<Link to='/'>ID/PW 찾기</Link>
+
+				{!isLoginForm && (
+					<Form.Item
+						name='password2'
+						rules={[
+							{
+								min: 1,
+								required: true,
+								message: '비밀번호를 다시 입력해 주세요.',
+							},
+						]}
+					>
+						<Input
+							prefix={<LockOutlined />}
+							type='password'
+							placeholder='Password2'
+						/>
 					</Form.Item>
+				)}
+
+				<LoginFormButtonWrap>
+					<Form.Item>{isLoginForm && <Link to='/'>ID/PW 찾기</Link>}</Form.Item>
 					<Form.Item>
 						<Button type='primary' htmlType='submit'>
-							로그인
+							{isLoginForm ? '로그인' : '회원가입'}
 						</Button>
 					</Form.Item>
 				</LoginFormButtonWrap>
+
+				{isLoginForm ? (
+					<MoveToLoginButton type='primary' onClick={handleRegisterChange}>
+						일반 회원가입
+					</MoveToLoginButton>
+				) : (
+					<MoveToLoginButton type='primary' onClick={handleRegisterChange}>
+						로그인 화면으로
+					</MoveToLoginButton>
+				)}
 
 				<Divider>간편가입</Divider>
 
@@ -103,7 +144,6 @@ const Login = () => {
 					{/* TODO: 소셜 로그인 버튼 추가하기 */}
 					<Button>카카오 가입</Button>
 					<Button>구글 가입</Button>
-					<Button type='primary'>일반 회원가입</Button>
 				</RegisterButtonWrap>
 			</LoginForm>
 		</Wrap>
