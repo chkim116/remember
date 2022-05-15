@@ -1,4 +1,4 @@
-import { Layouts, PlaceList, ScheduleCalender } from '../components';
+import { Layouts, ScheduleCalender } from '../components';
 
 export const Main = () => {
 	const mock = Array.from({ length: 20 }).map((_, i) => {
@@ -11,13 +11,7 @@ export const Main = () => {
 
 	return (
 		<Layouts>
-			<PlaceList
-				data={mock}
-				title='To be continue..'
-				extra='우리가 곧 할 목록들 :)'
-			/>
 			<ScheduleCalender />
-			<PlaceList data={mock} title='버킷리스트' extra='우리 꼭 하자 :)' />
 		</Layouts>
 	);
 };

@@ -1,18 +1,21 @@
-import { ReactNode } from 'react';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Button, Layout } from 'antd';
+import { ReactNode, useState } from 'react';
 import styled from 'styled-components';
-import Header from './Header';
 
-const LayoutSection = styled.section`
-	background-color: #f9f9f9;
+import MainMenu from './MainMenu';
+
+const { Sider } = Layout;
+
+const LayoutSection = styled(Layout)`
 	min-height: 100vh;
 	height: 100%;
-	margin-top: 50px;
 `;
-const Wrap = styled.div`
-	width: 100%;
-	max-width: 1024px;
-	padding: 8px;
-	margin: 0 auto;
+
+const SiderInner = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 `;
 
 interface Props {
@@ -20,10 +23,24 @@ interface Props {
 }
 
 export const Layouts = ({ children }: Props) => {
+	const [collapsed, setCollapsed] = useState(true);
+
+	const handleToggleClick = () => {
+		setCollapsed((prev) => !prev);
+	};
+
 	return (
 		<LayoutSection>
-			<Header />
-			<Wrap>{children}</Wrap>
+			<Sider breakpoint='lg' collapsed={collapsed}>
+				<SiderInner>
+					<Button type='primary' onClick={handleToggleClick}>
+						{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+					</Button>
+					<MainMenu />
+				</SiderInner>
+			</Sider>
+
+			{children}
 		</LayoutSection>
 	);
 };

@@ -23,8 +23,7 @@ const CalendarEventItem = styled.li`
 export const ScheduleCalender = () => {
 	return (
 		<CalendarWrap
-			dateCellRender={(value) => {
-				console.log(value);
+			dateCellRender={() => {
 				return (
 					<CalendarEvent>
 						<CalendarEventItem>
