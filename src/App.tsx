@@ -1,4 +1,6 @@
+import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { AppRoutes } from './routes';
 
 const Wrap = styled.div`
 	display: flex;
@@ -9,7 +11,13 @@ const Wrap = styled.div`
 `;
 
 function App() {
-	return <Wrap>app</Wrap>;
+	return (
+		<BrowserRouter>
+			<Wrap>
+				<AppRoutes />
+			</Wrap>
+		</BrowserRouter>
+	);
 }
 
 export default App;
