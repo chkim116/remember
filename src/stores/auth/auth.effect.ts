@@ -1,28 +1,25 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { LOCAL_STORAGE_TOKEN_KEY } from '@/configs';
 import { userData } from '@/_fixtures/auth/user';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getAuthInitialState } from './auth.slice';
+import { UserData, UserLoginDto } from './types';
 
-interface LoginData {
-	username: string;
-	email: string;
-	password: string;
-}
-
-export const effLoginUser = createAsyncThunk(
-	'auth/effLoginUser',
-	async (loginData: LoginData) => {
-		const { username, email, password } = loginData;
-		try {
-			// TODO: 로그인
-			console.log(username, email, password);
-			localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, 'token');
-			return userData;
-		} catch (err) {
-			console.log(err);
-		}
+export const effLoginUser = createAsyncThunk<
+	UserData | undefined,
+	UserLoginDto
+>('auth/effLoginUser', (loginData: UserLoginDto, { rejectWithValue }) => {
+	const { email, password } = loginData;
+	try {
+		// TODO: 로그인
+		console.log(email, password);
+		localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, 'token');
+		return userData;
+	} catch (err) {
+		console.log(err);
+		rejectWithValue('error');
 	}
-);
+});
 
 export const effLogout = createAsyncThunk('auth/effLogout', () => {
 	try {

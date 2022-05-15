@@ -3,4 +3,4 @@ import { RootState } from '..';
 
 const selAuth = (state: RootState) => state.auth;
 
-export const useAuthSelector = createSelector(selAuth, (auth) => auth.userData);
+export const selUserData = createSelector(selAuth, (auth) => auth.userData);

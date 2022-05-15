@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const getAuthInitialState = () => {
+import { effLoginUser } from './auth.effect';
+import { InitialState } from './types';
+
+type State = ReturnType<typeof getAuthInitialState>;
+
+export const getAuthInitialState = (): InitialState => {
 	return {
 		userData: {
 			id: '',
@@ -14,6 +19,23 @@ export const getAuthInitialState = () => {
 export const auth = createSlice({
 	name: 'auth',
 	initialState: getAuthInitialState(),
-	reducers: {},
-	extraReducers: (builder) => builder.addCase(),
+	reducers: {
+		reset: (state: State) => {
+			state.userData = getAuthInitialState().userData;
+		},
+		fakeInvited: (state: State) => {
+			state.userData.isInvited = true;
+		},
+	},
+	extraReducers: (builder) =>
+		builder
+			.addCase(effLoginUser.pending, (state) => state)
+			.addCase(effLoginUser.fulfilled, (state, { payload }) => {
+				if (payload) {
+					state.userData = payload;
+				}
+			})
+			.addCase(effLoginUser.rejected, (state) => state),
 });
+
+export const { fakeInvited, reset } = auth.actions;
