@@ -1,6 +1,6 @@
 import { BucketList, Layouts, ScheduleCalender } from '../components';
 
-export const Home = () => {
+export const Place = () => {
 	return (
 		<Layouts>
 			<BucketList />
