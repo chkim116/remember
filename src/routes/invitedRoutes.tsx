@@ -2,7 +2,7 @@ import { InviteRoutes } from '@/features/invite';
 
 export const invitedRoutes = [
 	{
-		path: '/',
+		path: '/*',
 		element: <InviteRoutes />,
 	},
 ];

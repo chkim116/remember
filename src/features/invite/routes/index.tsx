@@ -16,7 +16,7 @@ export const InviteRoutes = () => {
 	return (
 		<Wrap>
 			<Routes>
-				<Route path='/' element={<Invite />} />
+				<Route path='*' element={<Invite />} />
 			</Routes>
 		</Wrap>
 	);
