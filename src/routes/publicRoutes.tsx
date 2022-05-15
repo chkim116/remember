@@ -1,4 +1,4 @@
-import Login from '../features/login/routes/Login';
+import Login from '@/features/login/routes/Login';
 
 export const publicRoutes = [
 	{

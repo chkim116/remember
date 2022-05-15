@@ -4,7 +4,7 @@ import { publicRoutes } from './publicRoutes';
 
 export const AppRoutes = () => {
 	// TODO: 유저 권한
-	const auth = true;
+	const auth = false;
 	const routes = auth ? protectedRoutes : publicRoutes;
 	const element = useRoutes(routes);
 
