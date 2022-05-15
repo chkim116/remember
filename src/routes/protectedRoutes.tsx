@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Place } from '@/features/place';
+import { PlaceRoutes } from '@/features/place';
 
 const FallbackSpin = styled.div`
 	display: flex;
@@ -34,7 +34,7 @@ export const protectedRoutes = [
 		children: [
 			{
 				path: '/',
-				element: <Place />,
+				element: <PlaceRoutes />,
 			},
 			{
 				path: '*',
