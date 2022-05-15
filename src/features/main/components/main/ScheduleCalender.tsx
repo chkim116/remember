@@ -5,9 +5,7 @@ import styled from 'styled-components';
 
 moment.locale('ko');
 
-const CalendarWrap = styled(Calendar)`
-	margin: 24px 0;
-`;
+const CalendarWrap = styled(Calendar)``;
 const CalendarHeader = styled.div`
 	margin-top: 12px;
 	padding: 12px;

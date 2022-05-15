@@ -1,6 +1,23 @@
 import { Card, Image, List } from 'antd';
 import { CardProps } from 'antd/lib/card';
 import VirtualList from 'rc-virtual-list';
+import styled from 'styled-components';
+
+const CardWrap = styled(Card)`
+	min-width: 350px;
+	.ant-card-head {
+		padding: 0 6px;
+	}
+
+	.ant-card-body {
+		padding: 0 6px;
+	}
+`;
+
+const PlaceVirtualList = styled(VirtualList)`
+	max-height: calc(100vh - 60px);
+	overflow-y: scroll;
+`;
 
 interface Props extends Partial<CardProps> {
 	// TODO: 바꿀것
@@ -10,9 +27,9 @@ interface Props extends Partial<CardProps> {
 
 export const PlaceList = ({ data, title, ...props }: Props) => {
 	return (
-		<Card title={title} {...props}>
+		<CardWrap title={title} {...props}>
 			<List>
-				<VirtualList data={data} height={400} itemKey='id'>
+				<PlaceVirtualList data={data} itemKey='id'>
 					{(item: any) => (
 						<List.Item key={item.id}>
 							<List.Item.Meta
@@ -28,8 +45,8 @@ export const PlaceList = ({ data, title, ...props }: Props) => {
 							/>
 						</List.Item>
 					)}
-				</VirtualList>
+				</PlaceVirtualList>
 			</List>
-		</Card>
+		</CardWrap>
 	);
 };
