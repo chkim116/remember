@@ -29,9 +29,6 @@ export const auth = createSlice({
 		reset: (state: State) => {
 			state.userData = getAuthInitialState().userData;
 		},
-		fakeInvited: (state: State) => {
-			state.userData.isInvited = true;
-		},
 	},
 	extraReducers: (builder) =>
 		builder
