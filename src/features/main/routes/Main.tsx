@@ -1,5 +1,11 @@
 import { Layouts, PlaceList, ScheduleCalender } from '../components';
 
+const headStyle = {
+	padding: '0 1em',
+	fontSize: '18px',
+	color: '#afafaf',
+};
+
 export const Main = () => {
 	const mock = Array.from({ length: 20 }).map((_, i) => {
 		return {
@@ -11,7 +17,7 @@ export const Main = () => {
 
 	return (
 		<Layouts>
-			<PlaceList data={mock} title='Calendar List' />
+			<PlaceList data={mock} title='Place List' headStyle={headStyle} />
 			<ScheduleCalender />
 		</Layouts>
 	);
